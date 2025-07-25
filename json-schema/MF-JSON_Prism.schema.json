@@ -262,7 +262,7 @@
       "type": "object",
       "required": ["datetimes"],
       "properties": {
-        "datetimes": {"$ref": "#/definitions/datetimes"}
+        "datetimes": {"$ref": "#/definitions/prametricValuesDatetimes"}
       },
       "patternProperties": {
         "^S_": {
@@ -274,13 +274,22 @@
         }
       }
     },
+    "prametricValuesDatetimes": {
+      "$id": "#/definitions/prametricValuesDatetimes",
+      "type": [ "null", "array" ],
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
     "measureType": {
       "$id": "#/definitions/measureType",
       "type": "object",
       "required": ["type", "values"],
       "properties": {
         "type": {"type": "string", "enum": ["Measure"]},
-        "values": {"type": "array", "items": {"type": ["null", "number"]}},
+        "values": {"type": ["null", "array"], "items": {"type": ["null", "number"]}},
         "interpolation": {"$ref": "#/definitions/propertyInterpolation"},
         "form": {
           "oneOf": [
@@ -297,7 +306,7 @@
       "required": ["type", "values"],
       "properties": {
         "type": {"type": "string", "enum": ["Text"]},
-        "values": {"type": "array", "items": {"type": ["null", "string", "boolean"]}},
+        "values": {"type": ["null", "array"], "items": {"type": ["null", "string", "boolean"]}},
         "interpolation": {"$ref": "#/definitions/propertyInterpolation"},
         "description": {"type": "string"}
       }
@@ -308,7 +317,7 @@
       "required": ["type", "values"],
       "properties": {
         "type": {"type": "string", "enum": ["Image"]},
-        "values": {"type": "array", "items": {"type": ["null", "string"]}},
+        "values": {"type": ["null", "array"], "items": {"type": ["null", "string"]}},
         "interpolation": {
           "$ref": "#/definitions/propertyInterpolation"
         },
