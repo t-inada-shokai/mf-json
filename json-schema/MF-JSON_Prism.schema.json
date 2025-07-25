@@ -2,19 +2,16 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://www.opengis.net/spec/movingfeatures/json/1.0/prism/MF-JSON_Prism.schema.json",
   "title": "OGC Moving Feature JSON Prism schema",
-  "oneOf":[
-    {"$ref": "#/definitions/temporalGeometry"},
-    {"$ref": "#/definitions/temporalProperties"},
-    {"$ref": "#/definitions/crs"},
-    {"$ref": "#/definitions/trs"},
-    {"$ref": "#/definitions/movingFeature"},
-    {"$ref": "#/definitions/movingFeatureCollection"},
-    {"$ref": "#/definitions/time"},
-    {"$ref": "#/definitions/bbox"},
-    {"$ref": "#/definitions/geometry"},
-    {"$ref": "#/definitions/geometryInterpolation"}
-  ],
+  "type": "object",
+  "$ref": "#/definitions/mfjsonPrism",
   "definitions": {
+    "mfjsonPrism": {
+      "$id": "#/definitions/mfjsonPrism",
+      "oneOf": [
+        {"$ref": "#/definitions/movingFeature"},
+        {"$ref": "#/definitions/movingFeatureCollection"}
+      ]
+    },
     "temporalGeometry": {
       "$id": "#/definitions/temporalGeometry",
       "title": "TemporalGeometry Object",

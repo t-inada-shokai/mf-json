@@ -4,11 +4,15 @@
   "type": "object",
   "title": "OGC Moving Feature JSON Trajecotry schema",
   "required": [ "type" ],
-  "oneOf":[
-    {"$ref": "#/definitions/feature"},
-    {"$ref": "#/definitions/featureCollection"}
-  ],
+  "$ref": "#/definitions/mfjsonTrajectory",
   "definitions": {
+    "mfjsonTrajectory": {
+      "$id": "#/definitions/mfjsonTrajectory",
+      "oneOf":[
+        {"$ref": "#/definitions/feature"},
+        {"$ref": "#/definitions/featureCollection"}
+      ],
+    },
     "feature": {
       "title": "Feature",
       "description": "A MF-JSON trajectory feature",
