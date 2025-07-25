@@ -34,7 +34,7 @@
       "title": "Coordinate Reference System",
       "type": "object",
       "required": ["type", "properties"],
-      "oneOf":[
+      "oneOf": [
         {"$ref": "#/definitions/namedCRS"},
         {"$ref": "#/definitions/linkedCRS"}
       ]
@@ -44,7 +44,7 @@
       "title": "Temporal Coordinate Reference System",
       "type": "object",
       "required": ["type", "properties"],
-      "oneOf":[
+      "oneOf": [
         {"$ref": "#/definitions/namedTRS"},
         {"$ref": "#/definitions/linkedCRS"}
       ]
@@ -63,8 +63,8 @@
         "crs": {"$ref": "#/definitions/crs"},
         "trs": {"$ref": "#/definitions/trs"},
         "temporalProperties": {"$ref": "#/definitions/temporalProperties"},
-        "bbox": {"$ref": "#/definitions/bbox"},
-        "time": {"$ref": "#/definitions/time"},
+        "bbox": {"$ref": "#/definitions/boundingBox"},
+        "time": {"$ref": "#/definitions/lifeSpan"},
         "geometry": {"$ref": "#/definitions/geometry"},
         "properties": {"$ref": "#/definitions/properties"},
         "id": {
@@ -93,13 +93,13 @@
         },
         "crs": {"$ref": "#/definitions/crs"},
         "trs": {"$ref": "#/definitions/trs"},
-        "bbox": {"$ref": "#/definitions/bbox"},
-        "time": {"$ref": "#/definitions/time"},
+        "bbox": {"$ref": "#/definitions/boundingBox"},
+        "time": {"$ref": "#/definitions/lifeSpan"},
         "label": {"type": ["null", "string"]}
       }
     },
     "lifeSpan": {
-      "$id": "#/definitions/time",
+      "$id": "#/definitions/lifeSpan",
       "title": "LifeSpan Object",
       "type": ["null", "array"],
       "minItems": 2,
@@ -108,7 +108,7 @@
       "items": {"type": "string"}
     },
     "boundingBox": {
-      "$id": "#/definitions/bbox",
+      "$id": "#/definitions/boundingBox",
       "title": "BoundingBox Object",
       "type": ["null", "array"],
       "minItems": 4,
@@ -189,9 +189,9 @@
             }
           ]
         },
-        "interpolation": {"$ref": "#/definitions/geometryInterpolation"},
+        "interpolation": {"$ref": "#/definitions/motionCurve"},
         "base": {
-          "oneOf":[
+          "oneOf": [
             {"type": "null"},
             {
               "type": "object",
@@ -212,9 +212,9 @@
       }
     },
     "motionCurve": {
-      "$id": "#/definitions/geometryInterpolation",
+      "$id": "#/definitions/motionCurve",
       "title": "Interpolation method for TemporalPrimitiveGeometry",
-      "oneOf":[
+      "oneOf": [
         {
           "type": "string",
           "enum": ["Discrete", "Step", "Linear", "Quadratic", "Cubic"],
@@ -241,7 +241,7 @@
         "trs": {"$ref": "#/definitions/trs"}
       }
     },
-    "orientation":{
+    "orientation": {
       "$id": "#/definitions/orientation",
       "type": "object",
       "required": ["scales", "angles"],
@@ -258,7 +258,7 @@
           "maxItems": 3,
           "items": {"type": "number"}
         }
-      },
+      }
     },
     "prametricValues": {
       "$id": "#/definitions/prametricValues",
@@ -286,11 +286,11 @@
         "values": {"type": "array", "items": {"type": ["null", "number"]}},
         "interpolation": {"$ref": "#/definitions/propertyInterpolation"},
         "form": {
-            "oneOf": [
-              {"type": "string", "minLength": 3, "maxLength": 3},
-              {"type": "string", "format": "uri"}
-            ]
-          },
+          "oneOf": [
+            {"type": "string", "minLength": 3, "maxLength": 3},
+            {"type": "string", "format": "uri"}
+          ]
+        },
         "description": {"type": "string"}
       }
     },
@@ -321,7 +321,7 @@
     "propertyInterpolation": {
       "$id": "#/definitions/propertyInterpolation",
       "title": "Interpolation method for ParametricValues",
-      "oneOf":[
+      "oneOf": [
         {
           "type": "string",
           "enum": ["Discrete", "Step", "Linear", "Regression"],
